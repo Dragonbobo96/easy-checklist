@@ -127,9 +127,9 @@ class Checklist extends React.Component {
                             textAlign: 'center'
                         }}
                         >
-                            <Select.Option value={0} style={{ textAlign: 'center' }} >Low</Select.Option>
-                            <Select.Option value={1} style={{ textAlign: 'center' }} >Medium</Select.Option>
-                            <Select.Option value={2} style={{ textAlign: 'center' }} >High</Select.Option>
+                            <Select.Option value={0} style={{ textAlign: 'center' }} >Bassa</Select.Option>
+                            <Select.Option value={1} style={{ textAlign: 'center' }} >Media</Select.Option>
+                            <Select.Option value={2} style={{ textAlign: 'center' }} >Alta</Select.Option>
                         </Select>
                     <Input
                         addonBefore={
@@ -235,6 +235,12 @@ class Checklist extends React.Component {
                 flexDirection: 'column',
                 width: '80%'
             }}>
+                <Button onClick={() => {
+                    axios.post(`${BACKENDURL}/createChecklist`)
+                    .then((res) => {
+                        this.props.history.push(`/${res.data.id}`)
+                    })}}
+                > Nuova Checklist </Button>
                 <h2>Checklist {this.state.id}</h2>
                 <div 
                 style={{
@@ -291,7 +297,7 @@ class Checklist extends React.Component {
                         marginTop: '20px',
                         marginBottom: '20px',
                     }}
-                > Add Element </Button>
+                > Aggiungi task </Button>
                 <Popover
                     content={'Segnala un bug'} 
                     placement="leftBottom" 
